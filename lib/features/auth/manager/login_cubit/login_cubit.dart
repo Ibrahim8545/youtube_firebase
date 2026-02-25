@@ -7,6 +7,7 @@ import 'package:youtubefirebase/features/auth/manager/login_cubit/login_state.da
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
   Future<void> login({required String email, required String password}) async {
     emit(LoginLoading());
     try {
@@ -14,6 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
         email: email,
         password: password,
       );
+
       await CacheHelper.saveLogin();
       emit(LoginSuccess());
     } on FirebaseAuthException catch (e) {

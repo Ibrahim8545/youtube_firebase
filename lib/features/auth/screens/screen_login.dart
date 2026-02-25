@@ -8,6 +8,7 @@ import 'package:youtubefirebase/core/utils/colors.dart';
 import 'package:youtubefirebase/features/auth/manager/login_cubit/login_cubit.dart';
 import 'package:youtubefirebase/features/auth/manager/login_cubit/login_state.dart';
 import 'package:youtubefirebase/features/auth/screens/home_screen.dart';
+import 'package:youtubefirebase/features/auth/screens/reset_passward.dart';
 import 'package:youtubefirebase/features/auth/screens/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -89,7 +90,7 @@ class LoginScreen extends StatelessWidget {
                           textInputType: TextInputType.emailAddress,
                         ),
 
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 16),
                         PasswordField(
                           lable: 'Password',
                           controller: passwordController,
@@ -100,7 +101,30 @@ class LoginScreen extends StatelessWidget {
                             return null;
                           },
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 10),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ResetPassword(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              'Forget Password?',
+                              style: TextStyle(
+                                color: AppColors.teal,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 10),
                         state is LoginLoading
                             ? Center(child: CircularProgressIndicator())
                             : CustomBtn(
